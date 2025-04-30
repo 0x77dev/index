@@ -34,6 +34,8 @@ jobs:
 
       - name: Lint & Build
         shell: devenv shell bash -- -e {0}
+        env:
+          NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
         run: |
           bun install
           bun run lint
