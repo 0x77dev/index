@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@import "@nuxt/ui-pro";
+
+@source "../../../content/**/*";
+
+@theme static {
+  --font-sans: 'Fira Sans', sans-serif;
+  --font-mono: 'Fira Code', monospace;
+  --font-heading: 'Arimo', 'Arimo Placeholder', sans-serif;
+
+  --tracking-tighter: -0.12em;
+}
