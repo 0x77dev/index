@@ -22,7 +22,7 @@ jobs:
           name: devenv
 
       - name: Install devenv.sh
-        run: nix profile install github:cachix/devenv/v1.6
+        run: nix profile install github:cachix/devenv/v1.6 --accept-flake-config
 
       - name: Cache Bun dependencies
         uses: actions/cache@v3
