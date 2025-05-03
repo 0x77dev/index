@@ -76,7 +76,10 @@ const links = computed(() => {
 <template>
   <UPage v-if="page">
     <div class="border-b border-default py-8">
-      <div v-if="headline" class="mb-2.5 text-sm font-semibold text-primary flex items-center gap-1.5">
+      <div
+        v-if="headline"
+        class="mb-2.5 text-sm font-semibold text-primary flex items-center gap-1.5"
+      >
         {{ headline }}
       </div>
       <div>
@@ -84,33 +87,65 @@ const links = computed(() => {
           {{ page.title }}
         </h1>
         <div class="links w-full">
-          <div v-if="page.links" class="flex flex-wrap items-center gap-1.5">
-            <slot v-for="(link, i) in page.links" :key="i" name="link" :link="link">
+          <div
+            v-if="page.links"
+            class="flex flex-wrap items-center gap-1.5"
+          >
+            <slot
+              v-for="(link, i) in page.links"
+              :key="i"
+              name="link"
+              :link="link"
+            >
               <UButton v-bind="link" />
             </slot>
           </div>
         </div>
-        <div v-if="page.description" class="text-lg text-pretty text-muted mt-4">
+        <div
+          v-if="page.description"
+          class="text-lg text-pretty text-muted mt-4"
+        >
           {{ page.description }}
         </div>
       </div>
     </div>
 
     <UPageBody>
-      <ContentRenderer v-if="page" :value="page" />
+      <ContentRenderer
+        v-if="page"
+        :value="page"
+      />
 
       <!-- <USeparator v-if="surround?.length" /> -->
 
       <!-- <UContentSurround :surround="surround" /> -->
     </UPageBody>
 
-    <template v-if="page?.body?.toc?.links?.length" #right>
-      <UContentToc :title="toc?.title" :links="page.body?.toc?.links">
-        <template v-if="toc?.bottom" #bottom>
-          <div class="hidden lg:block space-y-6" :class="{ '!mt-6': page.body?.toc?.links?.length }">
-            <USeparator v-if="page.body?.toc?.links?.length" type="dashed" />
+    <template
+      v-if="page?.body?.toc?.links?.length"
+      #right
+    >
+      <UContentToc
+        :title="toc?.title"
+        :links="page.body?.toc?.links"
+      >
+        <template
+          v-if="toc?.bottom"
+          #bottom
+        >
+          <div
+            class="hidden lg:block space-y-6"
+            :class="{ '!mt-6': page.body?.toc?.links?.length }"
+          >
+            <USeparator
+              v-if="page.body?.toc?.links?.length"
+              type="dashed"
+            />
 
-            <UPageLinks :title="toc.bottom.title" :links="links" />
+            <UPageLinks
+              :title="toc.bottom.title"
+              :links="links"
+            />
           </div>
         </template>
       </UContentToc>
