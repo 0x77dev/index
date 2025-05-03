@@ -71,6 +71,6 @@ jobs:
         shell: devenv shell bash -- -e {0}
         if: github.ref == 'refs/heads/master'
         env:
-          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
         run: |
           bun run deploy
