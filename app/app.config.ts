@@ -34,7 +34,7 @@ export default defineAppConfig({
     }]
   },
   footer: {
-    credits: `Copyright Mykhailo Marynenko © ${new Date().getFullYear()}`,
+    credits: "Mykhailo Marynenko <ping [at] 0x77 [dot] dev>",
     colorMode: false,
     links: [{
       'icon': 'i-ph-globe',
