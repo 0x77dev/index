@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     '@nuxt/content',
     'nuxt-og-image',
     '@nuxtjs/seo',
-    'nuxt-llms'
+    'nuxt-llms',
+    '@nuxtjs/plausible'
   ],
 
   $production: {
@@ -116,5 +117,11 @@ export default defineNuxtConfig({
 
   ogImage: {
     zeroRuntime: true
+  },
+
+  plausible: {
+    ignoredHostnames: ['localhost'],
+    autoOutboundTracking: true,
+    proxy: true
   }
 })
