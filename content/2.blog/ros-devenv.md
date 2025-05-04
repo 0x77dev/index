@@ -1,6 +1,7 @@
 ---
 title: "Stop Fighting Your ROS 2 Environment: Build Faster, Reproducibly, Anywhere"
 description: You're a ROS developer. You love building cool robot applications, tackling complex navigation challenges, and making hardware *do things*. What you probably *don't* love is the endless cycle of dependency conflicts, the "works on my machine" nightmares, being chained to specific Ubuntu versions, or wrestling with Docker just to get a consistent build.
+ogImage: https://index.0x77.dev/blog/ros-devenv/cover.png
 date: 2025-05-04
 schemaOrg:
   type: BlogPosting
