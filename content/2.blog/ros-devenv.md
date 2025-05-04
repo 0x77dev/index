@@ -2,6 +2,58 @@
 title: "Stop Fighting Your ROS 2 Environment: Build Faster, Reproducibly, Anywhere"
 description: You're a ROS developer. You love building cool robot applications, tackling complex navigation challenges, and making hardware *do things*. What you probably *don't* love is the endless cycle of dependency conflicts, the "works on my machine" nightmares, being chained to specific Ubuntu versions, or wrestling with Docker just to get a consistent build.
 date: 2025-05-04
+schemaOrg:
+  type: BlogPosting
+  headline: "Stop Fighting Your ROS 2 Environment: Build Faster, Reproducibly, Anywhere"
+  description: You're a ROS developer. You love building cool robot applications, tackling complex navigation challenges, and making hardware *do things*. What you probably *don't* love is the endless cycle of dependency conflicts, the "works on my machine" nightmares, being chained to specific Ubuntu versions, or wrestling with Docker just to get a consistent build.
+  datePublished: "2025-05-04"
+  author:
+    type: Person
+    name: "Mykhailo Marynenko"
+    url: "https://0x77.dev"
+  publisher:
+    type: Organization
+    name: "Index of Mykhailo Marynenko"
+    url: "https://index.0x77.dev"
+  keywords:
+    - "ROS 2"
+    - "Robot Operating System"
+    - "Nix"
+    - "Package Manager"
+    - "Reproducible Builds"
+    - "Development Environment"
+    - "DevEnv"
+    - "devenv.sh"
+    - "nix-ros-overlay"
+    - "Docker"
+    - "CI/CD"
+    - "Robotics"
+    - "Software Engineering"
+  about:
+    - type: SoftwareApplication
+      name: Nix
+      url: https://nixos.org/nix/
+      applicationCategory: PackageManager
+      operatingSystem: "Linux, macOS, Windows (WSL)"
+    - type: SoftwareSourceCode
+      name: nix-ros-overlay
+      url: https://github.com/lopsided98/nix-ros-overlay
+      codeRepository: https://github.com/lopsided98/nix-ros-overlay
+    - type: SoftwareApplication
+      name: devenv.sh
+      url: https://devenv.sh/
+      applicationCategory: DevelopmentTool
+      operatingSystem: "Linux, macOS"
+    - type: SoftwareApplication
+      name: direnv
+      url: https://direnv.net/
+      applicationCategory: DevelopmentTool
+      operatingSystem: "Linux, macOS, Windows"
+    - type: SoftwareApplication
+      name: ROS 2
+      url: https://docs.ros.org/
+      applicationCategory: DevelopmentTool
+      operatingSystem: "Linux, macOS, Windows"
 ---
 
 Sound familiar?
@@ -68,8 +120,7 @@ Let's look at how these pieces fit together to create a seamless ROS 2 developme
 
 This file tells `devenv` where to get its core components (Nix "flakes"):
 
-```yaml
-# File: devenv.yaml
+```yaml [devenv.yaml]
 inputs:
   # Utility for devenv scripts
   mk-shell-bin:
@@ -99,8 +150,9 @@ The critical part here is `nixpkgs: follows: nix-ros-overlay/nixpkgs`, which ens
 
 This is where you define the specifics of *your* development shell:
 
-```nix
-# File: devenv.nix
+::code-collapse
+
+```nix [devenv.nix]
 {
   pkgs,        # The Nix package set (derived from inputs.nixpkgs)
   lib,         # Nixpkgs utility functions
@@ -217,6 +269,8 @@ in
 }
 ```
 
+::
+
 Let's break down the key elements:
 
 - **`overlays`:** This is where `nix-ros-overlay` is activated, making `pkgs.rosPackages.humble` (or other distros) available. We also add our `vendor` overlay for custom packages.
@@ -230,8 +284,7 @@ Let's break down the key elements:
 
 Need a ROS package not yet in `nix-ros-overlay`, or need to apply a patch? No problem. Here's how to add the RPLidar ROS package:
 
-```nix
-# File: vendor/default.nix
+```nix [vendor/default.nix]
 # This file defines the 'vendor' overlay
 self: super: {
   # Add our custom rplidar-ros package definition
@@ -240,8 +293,9 @@ self: super: {
 }
 ```
 
-```nix
-# File: vendor/rplidar-ros/default.nix
+::code-collapse
+
+```nix [vendor/rplidar-ros/default.nix]
 # Defines how to build the rplidar-ros package using Nix
 {
   lib,             # Nix utility functions
@@ -288,14 +342,15 @@ buildRosPackage {
 }
 ```
 
+::
+
 This `vendor` overlay demonstrates how easily you can integrate packages directly from source, pinning them to specific commits for reproducibility. `buildRosPackage` handles the ROS-specific build steps.
 
 ### 4. Automatic Activation (`.envrc`)
 
 This tiny file is the key to ergonomic activation:
 
-```bash
-# File: .envrc
+```bash [.envrc] {icon="i-mdi-file-code"}
 #!/bin/bash
 
 export DIRENV_WARN_TIMEOUT=20s
@@ -363,7 +418,9 @@ What does this setup give you?
 
 Here's an example GitHub Action for building containers using this setup:
 
-```yaml
+::code-collapse
+
+```yaml [.github/workflows/publish.yml]
 name: Publish Container
 
 on:
@@ -436,6 +493,8 @@ jobs:
             copy ${{ matrix.container }}
 ```
 
+::
+
 This workflow:
 1. Sets up Nix and Cachix for binary caches
 2. Builds containers for different components of your system
@@ -468,7 +527,7 @@ sh <(curl -L https://nixos.org/nix/install) --daemon
 
 For faster builds and enabling experimental features, edit `/etc/nix/nix.conf`:
 
-```conf
+```conf [/etc/nix/nix.conf]
 build-users-group = nixbld
 max-jobs = 1024
 cores = 128

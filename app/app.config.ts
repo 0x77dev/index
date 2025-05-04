@@ -11,6 +11,13 @@ export default defineAppConfig({
         root: 'border-t border-default',
         left: 'text-sm text-muted'
       }
+    },
+    prose: {
+      codeIcon: {
+        terminal: 'i-ph-terminal-window-duotone',
+        conf: 'i-ph-file-code-duotone',
+        envrc: 'i-ph-terminal'
+      }
     }
   },
   seo: {
