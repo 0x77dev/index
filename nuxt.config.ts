@@ -34,6 +34,9 @@ export default defineNuxtConfig({
       markdown: {
         toc: {
           searchDepth: 1
+        },
+        highlight: {
+          langs: ['bash', 'docker', 'json', 'markdown', 'nix', 'python', 'rust', 'toml', 'yaml', 'nix', 'mermaid']
         }
       }
     }

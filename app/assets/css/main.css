@@ -4,43 +4,8 @@
 @source "../../../content/**/*";
 
 @theme static {
-  --font-sans: 'TX-02-Variable', sans-serif;
+  --font-sans: 'Fira Sans', sans-serif;
   --font-mono: 'TX-02-Variable', monospace;
   --font-heading: 'Arimo', 'Arimo Placeholder', sans-serif;
-
-
-    /* Set default font-weight for better readability */
-  --font-weight-normal: 400; /* Regular weight */
-  --font-weight-medium: 500; /* Medium weight for emphasis */
-  --font-weight-bold: 600;   /* SemiBold for headings */
   --tracking-tighter: -0.12em;
-}
-
-:root {
-  /* Optimal size for Berkeley Mono on web */
-  --ui-font-size-base: 16px; /* Base size for body text */
-  --ui-line-height: 1.5;     /* Comfortable line height for monospace */
-}
-
-/* For code blocks specifically */
-code, pre {
-  font-size: 14px;
-  line-height: 1.6;
-  letter-spacing: -0.01em; /* Slight negative tracking for code */
-}
-
-body {
-  letter-spacing: -0.01em; /* Slight negative tracking for text use */
-}
-
-article {
-  /* For headings */
-  h1, h2, h3, h4, h5, h6 {
-    letter-spacing: -0.02em; /* Tighter tracking for headings */
-  }
-}
-
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
