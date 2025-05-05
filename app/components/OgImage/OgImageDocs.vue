@@ -11,17 +11,17 @@ defineProps({
     style="background: radial-gradient(ellipse at center -20%, #333333 0%, #0D0D0D 40%, #000000 100%)"
   >
     <!-- Top section with logo -->
-    <div>
+    <div class="mx-24 mt-12">
       <img
         :src="logo"
-        width="64"
+        width="128"
       >
     </div>
 
     <!-- Bottom section with title -->
-    <div>
+    <div class="mx-24">
       <h1
-        class="block text-[60px] text-white font-bold text-left"
+        class="block text-[48px] text-white font-bold text-left"
       >
         {{ title }}
       </h1>

@@ -17,8 +17,17 @@ export default defineContentConfig({
           variant: z.enum(['link', 'solid', 'outline', 'soft', 'subtle', 'ghost']).optional(),
           alt: z.string().optional()
         })).optional(),
-        ogImage: z.string().optional(),
-
+        image: z.object({ src: z.string().nonempty().editor({ input: 'media' }) }),
+        authors: z.array(
+          z.object({
+            name: z.string().nonempty(),
+            to: z.string().nonempty(),
+            avatar: z.object({ src: z.string().nonempty().editor({ input: 'media' }) })
+          })
+        ),
+        hide: z.boolean().optional(),
+        date: z.date(),
+        badge: z.object({ label: z.string().nonempty() }),
         // Schema.org structured data - universal approach
         schemaOrg: z.union([
           // ScholarlyArticle

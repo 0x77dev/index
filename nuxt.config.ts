@@ -17,6 +17,12 @@ export default defineNuxtConfig({
         type: 'd1',
         bindingName: 'CONTENT'
       }
+    },
+    ogImage: {
+      runtimeCacheStorage: {
+        driver: 'cloudflare-kv-binding',
+        binding: 'OG_IMAGE_CACHE'
+      }
     }
   },
 
@@ -56,23 +62,6 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-07-11',
 
   nitro: {
-    experimental: {
-      openAPI: true
-    },
-    openAPI: {
-      meta: {
-        title: 'Index API',
-        description: 'The API for the Index',
-        version: '0.0.0'
-      },
-      production: 'prerender',
-      route: '/api/openapi.json',
-      ui: {
-        scalar: {
-          route: '/api/docs'
-        }
-      }
-    },
     prerender: {
       routes: [
         '/'
@@ -96,6 +85,13 @@ export default defineNuxtConfig({
     provider: 'iconify'
   },
 
+  image: {
+    provider: 'cloudflare',
+    cloudflare: {
+      baseURL: 'https://index.0x77.dev'
+    }
+  },
+
   llms: {
     domain: 'https://index.0x77.dev',
     title: 'Index',
@@ -115,13 +111,13 @@ export default defineNuxtConfig({
     ]
   },
 
-  ogImage: {
-    zeroRuntime: true
-  },
-
   plausible: {
     ignoredHostnames: ['localhost'],
     autoOutboundTracking: true,
     proxy: true
+  },
+
+  sitemap: {
+    exclude: [/^\/api\/.*/, /^\/_.*$/]
   }
 })

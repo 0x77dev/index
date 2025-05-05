@@ -4,10 +4,6 @@ import type { ContentNavigationItem } from '@nuxt/content'
 import { useSchemaOrg } from '#imports'
 import { findPageHeadline } from '#ui-pro/utils/content'
 
-definePageMeta({
-  layout: 'docs'
-})
-
 const route = useRoute()
 const { toc } = useAppConfig()
 const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
@@ -35,9 +31,9 @@ useSeoMeta({
   ogTitle: title,
   description,
   ogDescription: description,
-  ...(page.value.ogImage && {
-    ogImage: page.value.ogImage,
-    twitterImage: page.value.ogImage,
+  ...(page.value.image?.src && {
+    ogImage: page.value.image.src,
+    twitterImage: page.value.image.src,
     twitterImageAlt: page.value.title
   })
 })
@@ -49,7 +45,7 @@ if (page.value.schemaOrg) {
 
 const headline = computed(() => findPageHeadline(navigation?.value, page.value))
 
-if (!page.value.ogImage) {
+if (!page.value.image?.src) {
   defineOgImageComponent('Docs', {
     headline: headline.value
   })
