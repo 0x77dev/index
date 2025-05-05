@@ -38,29 +38,39 @@ export default defineAppConfig({
     }
   },
   seo: {
-    siteName: 'Index - Mykhailo Marynenko'
+    siteName: 'Index'
   },
   header: {
-    title: '',
+    title: '^~~~^~~~',
     to: '/',
     logo: {
-      alt: '',
-      light: '',
-      dark: ''
+      alt: 'Index Logo',
+      light: '/favicon.svg',
+      dark: '/favicon.svg'
     },
     search: true,
     colorMode: true,
     links: [{
-      'icon': 'i-ph-globe',
-      'to': 'https://0x77.dev',
+      'icon': 'i-ph-chart-bar-duotone',
+      'to': 'https://plausible.io/index.0x77.dev',
       'target': '_blank',
-      'aria-label': '0x77.dev'
+      'aria-label': 'Stats'
+    }, {
+      'icon': 'i-simple-icons-github',
+      'to': 'https://github.com/0x77dev/index',
+      'target': '_blank',
+      'aria-label': 'GitHub'
     }]
   },
   footer: {
     credits: 'Mykhailo Marynenko <ping [at] 0x77 [dot] dev>',
     colorMode: false,
     links: [{
+      'icon': 'i-ph-chart-bar-duotone',
+      'to': 'https://plausible.io/index.0x77.dev',
+      'target': '_blank',
+      'aria-label': 'Stats'
+    }, {
       'icon': 'i-ph-globe',
       'to': 'https://0x77.dev',
       'target': '_blank',
@@ -72,7 +82,7 @@ export default defineAppConfig({
       'aria-label': 'X'
     }, {
       'icon': 'i-simple-icons-github',
-      'to': 'https://github.com/0x77dev',
+      'to': 'https://github.com/0x77dev/index',
       'target': '_blank',
       'aria-label': 'GitHub'
     }]

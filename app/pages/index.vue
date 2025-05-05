@@ -7,6 +7,7 @@ const title = 'Index'
 const description = 'Index is my personal knowledge repository where I document technical findings, research, my work, the work of others, and other useful information. This project serves two purposes: to organize my own learning and to share practical knowledge with the broader community.'
 
 useSeoMeta({
+  titleTemplate: 'Welcome to %s',
   title,
   ogTitle: title,
   description,
