@@ -509,8 +509,8 @@ Let's compare this Nix-based approach with traditional ROS 2 development methods
 | --------------------- | -------------------------------- | ----------------------- | --------------------------------------- |
 | OS Dependency         | Tied to specific Ubuntu versions | Any OS with Docker      | Any Linux, WSL2, export to Docker image |
 | Reproducibility       | Limited                          | Good                    | Excellent                               |
-| Performance           | Native                           | Virtualization overhead | Native                                  |
-| GUI Support           | Native                           | Complex X11 forwarding  | Native (with nixGL on non-NixOS)        |
+| Performance           | Native                           | Tiny overhead           | Native                                  |
+| GUI Support           | Native                           | X11 forwarding          | Native (with nixGL on non-NixOS)        |
 | Dependency Management | Manual                           | Container images        | Declarative, automatic                  |
 | CI/CD Integration     | Complex                          | Good                    | Excellent                               |
 | Isolation             | Limited                          | Good                    | Excellent                               |
@@ -590,7 +590,7 @@ Most likely, yes! The `nix-ros-overlay` project includes thousands of ROS packag
 
 ### "What About Performance?"
 
-The Nix approach actually improves performance compared to Docker-based solutions. Since packages run natively (not in a container), there's no virtualization overhead. The powerful caching system means you rarely rebuild dependencies, making your workflow faster.
+The Nix approach improves performance compared to Docker-based solutions. Since packages run natively (not in a container), there's no container runtime overhead. The powerful caching system means you rarely rebuild dependencies, making your workflow faster.
 
 ### "Can I Still Use My Favorite IDE/Tools?"
 
