@@ -121,13 +121,15 @@ const links = computed(() => {
         :value="page"
       />
 
-      <Giscus
-        v-if="page.id.includes('blog')"
-        v-bind="appConfig.giscus"
-        :theme="colorMode.value || appConfig.giscus.theme"
-        crossorigin="anonymous"
-        loading="lazy"
-      />
+      <LazyClientOnly>
+        <Giscus
+          v-if="page.id.includes('blog')"
+          v-bind="appConfig.giscus"
+          :theme="colorMode.value || appConfig.giscus.theme"
+          crossorigin="anonymous"
+          loading="lazy"
+        />
+      </LazyClientOnly>
 
       <!-- <USeparator v-if="surround?.length" /> -->
 
