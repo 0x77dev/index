@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Giscus from '@giscus/vue'
 import type { ContentNavigationItem } from '@nuxt/content'
 import { useSchemaOrg } from '#imports'
 import { findPageHeadline } from '#ui-pro/utils/content'
@@ -15,6 +16,10 @@ const { data: page } = await useAsyncData(route.path, () => queryCollection('doc
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 }
+
+const appConfig = useAppConfig()
+
+const colorMode = useColorMode()
 
 // const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
 //   return queryCollectionItemSurroundings('docs', route.path, {
@@ -114,6 +119,14 @@ const links = computed(() => {
       <ContentRenderer
         v-if="page"
         :value="page"
+      />
+
+      <Giscus
+        v-if="page.id.includes('blog')"
+        v-bind="appConfig.giscus"
+        :theme="colorMode.value || appConfig.giscus.theme"
+        crossorigin="anonymous"
+        loading="lazy"
       />
 
       <!-- <USeparator v-if="surround?.length" /> -->

@@ -1,3 +1,5 @@
+import type { GiscusProps } from '@giscus/vue'
+
 export default defineAppConfig({
   ui: {
     colors: {
@@ -5,6 +7,21 @@ export default defineAppConfig({
       neutral: 'zinc'
     }
   },
+  giscus: {
+    repo: '0x77dev/index' as `${string}/${string}`,
+    repoId: 'R_kgDOOihOwQ',
+    category: 'General',
+    categoryId: 'DIC_kwDOOihOwc4Cpx6e',
+    mapping: 'pathname',
+    strict: '0',
+    reactionsEnabled: '1',
+    emitMetadata: '0',
+    inputPosition: 'top',
+    theme: 'preferred_color_scheme',
+    lang: 'en',
+    reactions: '1',
+    loading: 'lazy'
+  } as GiscusProps,
   uiPro: {
     footer: {
       slots: {
