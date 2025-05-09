@@ -39,7 +39,7 @@
     "unimport": "4.1.1",
     "chokidar": "3.6.0"
   },
-  "packageManager": "pnpm@10.10.0",
+  "packageManager": "bun@1.2.10",
   "trustedDependencies": [
     "@parcel/watcher",
     "better-sqlite3",
