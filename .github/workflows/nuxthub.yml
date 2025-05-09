@@ -62,6 +62,7 @@ jobs:
 
       - name: Deploy to NuxtHub
         uses: nuxt-hub/action@v1
+        if: github.ref == 'refs/heads/master'
         id: deploy
         with:
           project-key: index-on-hub-bypx
