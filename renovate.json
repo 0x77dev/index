@@ -3,7 +3,10 @@
     "github>nuxt/renovate-config-nuxt"
   ],
   "lockFileMaintenance": {
-    "enabled": true
+    "enabled": true,
+    "automerge": true,
+    "automergeType": "pr",
+    "platformAutomerge": true
   },
   "baseBranches": [
     "master"
@@ -14,6 +17,15 @@
         "resolutions"
       ],
       "enabled": false
+    },
+    {
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true,
+      "platformAutomerge": true
     }
   ]
 }
