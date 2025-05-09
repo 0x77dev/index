@@ -61,7 +61,12 @@ export default defineNuxtConfig({
   hub: {
     ai: true,
     analytics: true,
-    cache: true
+    cache: true,
+    bindings: {
+      observability: {
+        logs: true
+      }
+    }
   },
 
   eslint: {
