@@ -13,25 +13,49 @@ jobs:
       id-token: write
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          node-version: 22
-          cache: 'pnpm'
+          lfs: true
+
+      - uses: cachix/install-nix-action@v26
+
+      - uses: nix-community/cache-nix-action@v6
+        with:
+          primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
+          restore-prefixes-first-match: nix-${{ runner.os }}-
+          gc-max-store-size-linux: 1G
+          purge: true
+          purge-prefixes: nix-${{ runner.os }}-
+          purge-created: 0
+          purge-last-accessed: 0
+          purge-primary-key: never
+
+      - uses: cachix/cachix-action@v14
+        with:
+          name: devenv
+
+      - run: nix profile install github:cachix/devenv/v1.6 --accept-flake-config
+
+      - name: Cache Bun dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
 
       - name: Install dependencies
-        run: pnpm install
+        shell: devenv shell bash -- -e {0}
+        run: bun install
 
       - name: Ensure NuxtHub module is installed
-        run: pnpx nuxthub@latest ensure
+        shell: devenv shell bash -- -e {0}
+        run: bunx nuxthub@latest ensure
 
       - name: Build application
-        run: pnpm build
+        shell: devenv shell bash -- -e {0}
+        run: bun run build
 
       - name: Deploy to NuxtHub
         uses: nuxt-hub/action@v1

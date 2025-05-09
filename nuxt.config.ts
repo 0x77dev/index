@@ -8,23 +8,9 @@ export default defineNuxtConfig({
     'nuxt-og-image',
     '@nuxtjs/seo',
     'nuxt-llms',
-    '@nuxtjs/plausible'
+    '@nuxtjs/plausible',
+    '@nuxthub/core'
   ],
-
-  $production: {
-    content: {
-      database: {
-        type: 'd1',
-        bindingName: 'CONTENT'
-      }
-    },
-    ogImage: {
-      runtimeCacheStorage: {
-        driver: 'cloudflare-kv-binding',
-        binding: 'OG_IMAGE_CACHE'
-      }
-    }
-  },
 
   devtools: {
     enabled: true
@@ -70,6 +56,12 @@ export default defineNuxtConfig({
       autoSubfolderIndex: false,
       crawlLinks: true
     }
+  },
+
+  hub: {
+    ai: true,
+    analytics: true,
+    cache: true
   },
 
   eslint: {

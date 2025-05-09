@@ -3,8 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "NITRO_PRESET=cloudflare_pages nuxt build",
-    "deploy": "wrangler pages deploy dist/ --project-name index",
+    "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -20,6 +19,7 @@
     "@nuxt/content": "^3.5.1",
     "@nuxt/image": "^1.10.0",
     "@nuxt/ui-pro": "^3.1.0",
+    "@nuxthub/core": "^0.8.27",
     "@nuxtjs/plausible": "^1.2.0",
     "@nuxtjs/seo": "^3.0.3",
     "mermaid": "^11.6.0",
