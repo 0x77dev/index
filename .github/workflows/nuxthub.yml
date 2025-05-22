@@ -34,7 +34,7 @@ jobs:
           purge-last-accessed: 0
           purge-primary-key: never
 
-      - uses: cachix/cachix-action@v14
+      - uses: cachix/cachix-action@v16
         with:
           name: devenv
 
