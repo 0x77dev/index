@@ -23,7 +23,7 @@
     "@nuxtjs/plausible": "^1.2.0",
     "@nuxtjs/seo": "^3.0.3",
     "mermaid": "^11.6.0",
-    "nuxt": "^3.18.1",
+    "nuxt": "^3.19.1",
     "nuxt-llms": "0.1.2",
     "nuxt-og-image": "^5.1.4"
   },
