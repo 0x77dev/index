@@ -45,7 +45,7 @@ export default defineNuxtConfig({
     payloadExtraction: true
   },
 
-  compatibilityDate: '2024-07-11',
+  compatibilityDate: '2025-10-18',
 
   nitro: {
     prerender: {
