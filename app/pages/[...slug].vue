@@ -2,7 +2,7 @@
 import Giscus from '@giscus/vue'
 import type { ContentNavigationItem } from '@nuxt/content'
 import { useSchemaOrg } from '#imports'
-import { findPageHeadline } from '#ui-pro/utils/content'
+import { findPageHeadline, findPageBreadcrumb } from '@nuxt/content/utils'
 
 const route = useRoute()
 const { toc } = useAppConfig()
@@ -17,11 +17,9 @@ const appConfig = useAppConfig()
 
 const colorMode = useColorMode()
 
-// const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
-//   return queryCollectionItemSurroundings('docs', route.path, {
-//     fields: ['description']
-//   })
-// })
+const { data: breadcrumb } = await useAsyncData(`${route.path}-breadcrumb`, () => {
+  return findPageBreadcrumb(navigation, route.path)
+})
 
 const title = page.value.seo?.title || page.value.title
 const description = page.value.seo?.description || page.value.description

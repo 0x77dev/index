@@ -41,7 +41,7 @@ export default defineAppConfig({
     siteName: 'Index'
   },
   header: {
-    title: '^~~~^~~~',
+    title: '01110111',
     to: '/',
     logo: {
       alt: 'Index Logo',
@@ -63,7 +63,7 @@ export default defineAppConfig({
     }]
   },
   footer: {
-    credits: 'Mykhailo Marynenko <ping [at] 0x77 [dot] dev>',
+    credits: 'Mykhailo Marynenko <ping@0x77.dev>',
     colorMode: false,
     links: [{
       'icon': 'i-ph-chart-bar-duotone',

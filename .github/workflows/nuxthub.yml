@@ -1,9 +1,6 @@
 name: Deploy to NuxtHub
 on: push
 
-env:
-  NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
-
 jobs:
   deploy:
     name: "Deploy to NuxtHub"
@@ -38,13 +35,13 @@ jobs:
         with:
           name: devenv
 
-      - run: nix profile install github:cachix/devenv/v1.6 --accept-flake-config
+      - run: nix profile install github:cachix/devenv/v1.10 --accept-flake-config
 
       - name: Cache Bun dependencies
         uses: actions/cache@v4
         with:
           path: ~/.bun/install/cache
-          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
           restore-keys: |
             ${{ runner.os }}-bun-
 

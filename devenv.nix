@@ -1,6 +1,8 @@
 { pkgs, lib, config, inputs, ... }:
 
 {
+  name = "index";
+
   languages.javascript = {
     enable = true;
     bun.enable = true;

@@ -1,11 +1,333 @@
 @import "tailwindcss";
-@import "@nuxt/ui-pro";
+@import "@nuxt/ui";
 
 @source "../../../content/**/*";
 
+/* ============================================================================
+   Font Configuration - Three Font System
+   - Fira Sans: Body text (proportional sans-serif)
+   - TX-02 Variable: Code/monospace content
+   - Arimo: Headings (proportional sans-serif)
+   ========================================================================= */
+
 @theme static {
-  --font-sans: 'Fira Sans', sans-serif;
-  --font-mono: 'TX-02-Variable', monospace;
-  --font-heading: 'Arimo', 'Arimo Placeholder', sans-serif;
-  --tracking-tighter: -0.12em;
+  /* ===== Font Families ===== */
+  --font-sans: 'Fira Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'TX-02 Variable', ui-monospace, 'Cascadia Code', monospace;
+  --font-heading: 'Arimo', 'Arimo Placeholder', ui-sans-serif, system-ui, sans-serif;
+
+  /* ===== Line Heights =====
+   * Proportional fonts (Fira Sans, Arimo): 1.5-1.6
+   * Monospace (TX-02): 1.7-1.8
+   */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.6;
+  /* Body text (Fira Sans) */
+  --leading-relaxed: 1.75;
+  /* Long-form reading */
+  --leading-loose: 2;
+  --leading-code: 1.7;
+  /* Code blocks (TX-02) */
+  --leading-heading: 1.2;
+  /* Headings (Arimo) */
+
+  /* ===== Letter Spacing ===== */
+  --tracking-tighter: -0.02em;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.01em;
+  --tracking-wider: 0.02em;
+  --tracking-widest: 0.03em;
+
+  /* ===== Font Sizes ===== */
+  --font-size-xs: 0.75rem;
+  /* 12px */
+  --font-size-sm: 0.875rem;
+  /* 14px */
+  --font-size-base: 1rem;
+  /* 16px */
+  --font-size-lg: 1.125rem;
+  /* 18px */
+  --font-size-xl: 1.25rem;
+  /* 20px */
+  --font-size-2xl: 1.5rem;
+  /* 24px */
+  --font-size-3xl: 1.875rem;
+  /* 30px */
+  --font-size-4xl: 2.25rem;
+  /* 36px */
+  --font-size-5xl: 3rem;
+  /* 48px */
+
+  /* ===== Container Widths ===== */
+  --container-prose: 65ch;
+  /* Proportional text optimal width */
+  --container-code: 80ch;
+  /* Code blocks */
+}
+
+/* ============================================================================
+   TX-02 Variable Font Settings (Monospace Only)
+   ========================================================================= */
+
+/* Apply TX-02 settings only to monospace contexts */
+code,
+pre,
+kbd,
+samp,
+.font-mono {
+  /* Variable Font Axes */
+  font-variation-settings:
+    'wdth' 90,
+    /* SemiCondensed */
+    'wght' 400,
+    /* Regular */
+    'slnt' 0;
+  /* Upright */
+
+  /* OpenType Features */
+  font-feature-settings:
+    'calt' 1,
+    /* Programming ligatures */
+    'ss02' 1;
+  /* Dotted zero */
+}
+
+/* Dark mode adjustment for monospace */
+.dark {
+
+  code,
+  pre,
+  kbd,
+  samp,
+  .font-mono {
+    font-variation-settings:
+      'wdth' 90,
+      'wght' 375,
+      /* Slightly lighter */
+      'slnt' 0;
+  }
+}
+
+/* ============================================================================
+   Nuxt Content Prose Styling
+   ========================================================================= */
+
+.prose {
+  /* Optimal line length for proportional fonts */
+  max-width: var(--container-prose);
+
+  /* Base typography (Fira Sans) */
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-normal);
+
+  /* ===== Headings (Arimo) ===== */
+  :where(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: var(--leading-heading);
+    letter-spacing: var(--tracking-tight);
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+  }
+
+  :where(h1) {
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+  }
+
+  :where(h2) {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+  }
+
+  :where(h3) {
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+  }
+
+  :where(h4) {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+  }
+
+  :where(h5) {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+  }
+
+  :where(h6) {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+  }
+
+  /* ===== Paragraphs (Fira Sans) ===== */
+  :where(p) {
+    margin-bottom: 1.5em;
+  }
+
+  /* ===== Inline Code (TX-02) ===== */
+  :where(code):not(:where(pre code)) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    /* TX-02 settings applied via code selector above */
+  }
+
+  /* ===== Code Blocks (TX-02) ===== */
+  :where(pre) {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    line-height: var(--leading-code);
+    padding: 1.5rem;
+    margin: 1.5em 0;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    max-width: var(--container-code);
+
+    code {
+      font-size: inherit;
+      background: transparent;
+      padding: 0;
+    }
+  }
+
+  /* ===== Lists (Fira Sans) ===== */
+  :where(ul, ol) {
+    margin: 1.5em 0;
+    padding-left: 2em;
+
+    li {
+      margin-bottom: 0.5em;
+    }
+  }
+
+  /* ===== Blockquotes (Fira Sans) ===== */
+  :where(blockquote) {
+    margin: 2em 0;
+    padding-left: 1.5em;
+    border-left: 4px solid;
+    font-style: italic;
+  }
+
+  /* ===== Tables (Fira Sans) ===== */
+  :where(table) {
+    width: 100%;
+    margin: 2em 0;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+
+    :where(th, td) {
+      padding: 0.75em 1em;
+      text-align: left;
+      border-bottom: 1px solid;
+    }
+
+    :where(th) {
+      font-weight: 600;
+    }
+  }
+
+  /* ===== Strong/Bold (Fira Sans) ===== */
+  :where(strong, b) {
+    font-weight: 700;
+  }
+
+  /* ===== Emphasis/Italic (Fira Sans) ===== */
+  :where(em, i) {
+    font-style: italic;
+  }
+}
+
+/* ============================================================================
+   TX-02 Utility Classes (for monospace contexts)
+   ========================================================================= */
+
+/* Weight variations */
+.font-tx2-light {
+  font-variation-settings: 'wdth' 90, 'wght' 300, 'slnt' 0;
+}
+
+.font-tx2-medium {
+  font-variation-settings: 'wdth' 90, 'wght' 500, 'slnt' 0;
+}
+
+.font-tx2-semibold {
+  font-variation-settings: 'wdth' 90, 'wght' 600, 'slnt' 0;
+}
+
+.font-tx2-bold {
+  font-variation-settings: 'wdth' 90, 'wght' 700, 'slnt' 0;
+}
+
+/* Width variations */
+.font-tx2-condensed {
+  font-variation-settings: 'wdth' 80, 'wght' 400, 'slnt' 0;
+}
+
+.font-tx2-normal {
+  font-variation-settings: 'wdth' 100, 'wght' 400, 'slnt' 0;
+}
+
+/* Slant */
+.font-tx2-oblique {
+  font-variation-settings: 'wdth' 90, 'wght' 400, 'slnt' -16;
+}
+
+/* Stylistic sets */
+.tx2-slashed-zero {
+  font-feature-settings: 'calt' 1, 'ss01' 1;
+}
+
+.tx2-dotted-zero {
+  font-feature-settings: 'calt' 1, 'ss02' 1;
+}
+
+.tx2-gap-zero {
+  font-feature-settings: 'calt' 1, 'ss03' 1;
+}
+
+.tx2-no-ligatures {
+  font-feature-settings: 'calt' 0;
+}
+
+/* ============================================================================
+   Responsive & Accessibility
+   ========================================================================= */
+
+@media (prefers-contrast: high) {
+
+  code,
+  pre,
+  kbd,
+  samp,
+  .font-mono {
+    font-variation-settings: 'wdth' 90, 'wght' 450, 'slnt' 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .prose {
+    font-size: 1.0625rem;
+    /* 17px */
+  }
+}
+
+@media (min-width: 1024px) {
+  .prose {
+    font-size: 1.125rem;
+    /* 18px */
+  }
+}
+
+@media print {
+  .prose {
+    font-size: 11pt;
+    line-height: 1.5;
+  }
 }

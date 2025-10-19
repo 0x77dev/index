@@ -5,5 +5,22 @@
   },
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit"
-  }
+  },
+  "cSpell.words": [
+    "bunx",
+    "cachix",
+    "demi",
+    "devenv",
+    "dotenv",
+    "giscus",
+    "iconify",
+    "llms",
+    "nuxthub",
+    "nuxtjs",
+    "pkgs",
+    "unimport",
+    "unrs",
+    "workerd"
+  ],
+  "typescript.experimental.useTsgo": true
 }

@@ -5,7 +5,9 @@ const { footer } = useAppConfig()
 <template>
   <UFooter>
     <template #left>
-      {{ footer.credits }}
+      <span class="text-sm text-muted font-mono">
+        {{ footer.credits }}
+      </span>
     </template>
 
     <template #right>
