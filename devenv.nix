@@ -5,9 +5,16 @@
 
   languages.javascript = {
     enable = true;
-    bun.enable = true;
-    package = pkgs.nodejs_22;
+    bun = {
+      enable = true;
+      install.enable = true;
+    };
   };
 
   dotenv.enable = true;
+
+  git-hooks.hooks.eslint = {
+    enable = true;
+    settings.binPath = "./node_modules/.bin/eslint";
+  };
 }
