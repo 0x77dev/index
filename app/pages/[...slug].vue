@@ -43,9 +43,14 @@ if (page.value.schemaOrg) {
 
 const headline = computed(() => findPageHeadline(navigation?.value, page.value))
 
-if (!page.value.image?.src) {
-  defineOgImageComponent('Docs', {
-    headline: headline.value
+if (page.value?.ogImage) {
+  defineOgImage(page.value.ogImage)
+} else if (!page.value.image?.src) {
+  defineOgImage({
+    component: 'Docs',
+    props: {
+      title: headline.value || page.value.title
+    }
   })
 }
 

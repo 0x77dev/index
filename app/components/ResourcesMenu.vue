@@ -3,21 +3,22 @@
     v-slot="{ open }"
     :modal="false"
     :items="[{
-      label: 'Website',
-      to: 'https://0x77.dev'
-    }, {
-      label: 'CV',
-      to: 'https://cv.0x77.dev'
-    }, {
-      label: 'Index',
-      to: 'https://docs-template.nuxt.dev/',
-      color: 'primary',
-      checked: true,
-      type: 'checkbox'
-    }, {
-      label: 'Socials',
-      to: 'https://mykhailo.link/'
-    }]"
+               label: 'Website',
+               to: 'https://0x77.dev'
+             },
+             {
+               label: 'Blog',
+               to: 'https://blog.0x77.dev/'
+             }, {
+               label: 'Index',
+               to: 'https://index.0x77.dev/',
+               color: 'primary',
+               checked: true,
+               type: 'checkbox'
+             }, {
+               label: 'Socials',
+               to: 'https://mykhailo.link/'
+             }]"
     :ui="{ content: 'w-(--reka-dropdown-menu-trigger-width) min-w-0' }"
     size="xs"
   >

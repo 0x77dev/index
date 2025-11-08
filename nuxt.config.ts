@@ -41,20 +41,30 @@ export default defineNuxtConfig({
 
   experimental: {
     viewTransition: true,
-    watcher: 'parcel',
     payloadExtraction: true
   },
 
-  compatibilityDate: '2025-10-18',
+  compatibilityDate: '2025-11-07',
 
   nitro: {
     prerender: {
       routes: [
         '/'
       ],
-      failOnError: false,
-      autoSubfolderIndex: false,
       crawlLinks: true
+    },
+    rollupConfig: {
+      external: ['readdirp', 'picomatch']
+    },
+    experimental: {
+      openAPI: true
+    },
+    openAPI: {
+      meta: {
+        title: 'Index API',
+        description: 'API for the index.0x77.dev',
+        version: '0.0.0'
+      }
     }
   },
 
@@ -62,6 +72,8 @@ export default defineNuxtConfig({
     ai: true,
     analytics: true,
     cache: true,
+    database: true,
+    kv: true,
     bindings: {
       observability: {
         logs: true
@@ -106,6 +118,17 @@ export default defineNuxtConfig({
         ]
       }
     ]
+  },
+
+  ogImage: {
+    // Use Satori for rendering (lightweight, no chromium needed)
+    defaults: {
+      renderer: 'satori',
+      // Cache for 7 days
+      cacheMaxAgeSeconds: 60 * 60 * 24 * 7
+    },
+    // Use NuxtHub's built-in cache
+    runtimeCacheStorage: true
   },
 
   plausible: {

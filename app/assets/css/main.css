@@ -15,6 +15,7 @@
   --font-sans: 'Fira Sans', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'TX-02 Variable', ui-monospace, 'Cascadia Code', monospace;
   --font-heading: 'Arimo', 'Arimo Placeholder', ui-sans-serif, system-ui, sans-serif;
+  --ui-radius: 0.25rem;
 
   /* ===== Line Heights =====
    * Proportional fonts (Fira Sans, Arimo): 1.5-1.6
