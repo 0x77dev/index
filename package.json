@@ -31,7 +31,7 @@
     "@nuxt/ui": "^4.1.0",
     "@nuxthub/core": "^0.9.0",
     "@nuxtjs/plausible": "^2.0.1",
-    "@nuxtjs/seo": "^3.2.2",
+    "@nuxtjs/seo": "^5.3.14",
     "better-sqlite3": "^12.4.1",
     "mermaid": "^11.12.1",
     "nuxt": "^4.2.1",
